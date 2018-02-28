@@ -1,6 +1,6 @@
 <?php
 
-namespace ST_Activity_Summary;
+namespace ST\WP_Activity_Summary;
 
 class SummaryEmail {
 
@@ -16,9 +16,9 @@ class SummaryEmail {
         echo '<p>This is your weekly email updating you on the current status of the blog on ' . get_bloginfo('name') . '.</p>';
 
         echo '<h3>Recent Posts</h3>';
-        echo (new \ST_Activity_Summary\PostsTable())->html();
+        echo (new \ST\WP_Activity_Summary\PostsTable())->html();
         echo '<h3>Recent Authors</h3>';
-        echo (new \ST_Activity_Summary\RecentAuthorsTable([
+        echo (new \ST\WP_Activity_Summary\RecentAuthorsTable([
             'limit' => 10
         ]))->html();
 

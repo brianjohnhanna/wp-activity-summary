@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-4": {
-            "ST_Activity_Summary\\": "/src/classes"
+            "ST\WP_Activity_Summary\\": "/src/classes"
         }
     }
 }

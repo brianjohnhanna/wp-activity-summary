@@ -1,6 +1,6 @@
 <?php
 
-namespace ST_Activity_Summary;
+namespace ST\WP_Activity_Summary;
 
 class PostsTable extends Table {
     public function get_records() {

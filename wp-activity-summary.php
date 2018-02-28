@@ -20,7 +20,7 @@ spl_autoload_register(
 	function( $class ) {
         
         // project-specific namespace prefix
-        $prefix = 'ST_Activity_Summary\\';
+        $prefix = 'ST\WP_Activity_Summary\\';
         // base directory for the namespace prefix
         $base_dir = __DIR__ . '/src/classes/';
         // does the class use the namespace prefix?
@@ -40,7 +40,7 @@ spl_autoload_register(
 
 register_deactivation_hook(
     __FILE__, function() {
-        wp_clear_scheduled_hook('st_activity_summary_email');
+        wp_clear_scheduled_hook('st_wp_activity_summary_email');
     }
 );
 
@@ -48,5 +48,5 @@ register_deactivation_hook(
 require_once __DIR__ . '/src/dashboard-ui.php';
 require_once __DIR__ . '/src/cron.php';
 
-\ST_Activity_Summary\DashboardUI\setup();
-\ST_Activity_Summary\Cron\setup();
+\ST\WP_Activity_Summary\DashboardUI\setup();
+\ST\WP_Activity_Summary\Cron\setup();
