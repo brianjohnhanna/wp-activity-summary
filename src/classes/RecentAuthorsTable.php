@@ -26,7 +26,7 @@ class RecentAuthorsTable extends Table {
             $user->posts = (new \WP_Query([
                 'author'      => $user->ID,
                 'numberposts' => -1,
-                'date_query' => $this->args['date_query']
+                // 'date_query' => $this->args['date_query']
             ]))->get_posts();
         }
         usort($users, [$this, 'sort_by_date']);

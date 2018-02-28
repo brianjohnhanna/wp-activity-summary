@@ -25,7 +25,7 @@ class SummaryEmail {
             'date_query' => $weekly_date_query,
             'posts_per_page' => -1
         ]);
-        echo '<h3>Recent Authors</h3>';
+        echo '<h3>Authors by Post Date</h3>';
         echo (new \ST\WP_Activity_Summary\RecentAuthorsTable([
             'date_query' => $weekly_date_query
         ]))->html();
