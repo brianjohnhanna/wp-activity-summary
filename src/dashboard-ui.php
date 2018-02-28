@@ -23,5 +23,8 @@ function render_dashboard_widget() {
     echo (new \ST\WP_Activity_Summary\PostsTable())->html();
     echo '<br />';
     echo '<h3><u>Recent Authors</u></h3>';
-    echo (new \ST\WP_Activity_Summary\RecentAuthorsTable())->html();
+    echo (new \ST\WP_Activity_Summary\RecentAuthorsTable([
+        'has_published_posts' => ['post'],
+        'limit' => 20
+    ]))->html();
 }

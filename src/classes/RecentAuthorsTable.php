@@ -8,19 +8,26 @@ class RecentAuthorsTable extends Table {
 
     public function __construct($params = array()) {
         $defaults = [
+            'has_published_posts' => apply_filters('wpas/default_post_types', null),
+            'role' => apply_filters('wpas/default_author_roles', null),
             'limit' => -1,
+            'date_query' => array()
         ];
         $this->args = array_merge($defaults, $params);
     }
 
     public function get_records() {
-        $users =  get_users();
+        $users =  (new \WP_User_Query([
+            'role' => $this->args['role'],
+            'has_published_posts' =>  $this->args['has_published_posts']
+        ]))->get_results();
+
         foreach ($users as $user) {
-            $user->posts = get_posts([
+            $user->posts = (new \WP_Query([
                 'author'      => $user->ID,
-                'orderby'     => 'date',
-                'numberposts' => -1
-            ]);
+                'numberposts' => -1,
+                'date_query' => $this->args['date_query']
+            ]))->get_posts();
         }
         usort($users, [$this, 'sort_by_date']);
         if ($this->args['limit'] > 0) {
@@ -32,9 +39,9 @@ class RecentAuthorsTable extends Table {
     public function sort_by_date($a, $b) {
         if (empty($a->posts) && !empty($b->posts)) return 1;
         if (empty($b->posts) && !empty($a->posts)) return -1;
-        $t1 = !empty($a->posts) ? strtotime($a->posts[0]->post_date) : 1;
-        $t2 = !empty($b->posts) ? strtotime($b->posts[0]->post_date) : 1;
-        return $t1 - $t2;
+        $t1 = strtotime($a->posts[0]->post_date);
+        $t2 = strtotime($b->posts[0]->post_date);
+        return $t2 - $t1;
     }
 
     public function get_columns() {
