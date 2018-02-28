@@ -8,4 +8,3 @@
 composer.phar
 /vendor/
 .DS_Store
-vendor
