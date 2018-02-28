@@ -1,0 +1,17 @@
+{
+    "name": "stirling-technologies/wp-activity-summary",
+    "authors": [
+        {
+            "name": "Brian Hanna",
+            "email": "brian@stboston.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "ST_Activity_Summary\\": "/src/classes"
+        }
+    }
+}
