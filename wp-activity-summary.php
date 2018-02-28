@@ -6,6 +6,7 @@
  * Version: 1.0
  * Author: Brian Hanna, Stirling Technologies
  * Author URI: https://github.com/brianjohnhanna
+ * GitHub Plugin URI: brianjohnhanna/wp-activity-summary
 */
 
 
