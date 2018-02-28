@@ -23,8 +23,10 @@ function add_schedule() {
 }
 
 function process_email() {
+    $emails = get_option('wpas_emails');
+    if (empty($emails)) return;
     wp_mail(
-        'brian@stboston.com',
+        $emails,
         'Weekly Activity Summary for ' . date('M j, Y'),
         new \ST\WP_Activity_Summary\SummaryEmail(),
         array('Content-Type: text/html; charset=UTF-8')
