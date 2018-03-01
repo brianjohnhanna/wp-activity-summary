@@ -3,7 +3,7 @@
  * Plugin Name: WP Activity Summary
  * Plugin URI: https://stboston.com/
  * Description: Send emails with a weekly recap of published posts, add dashboard widget with recently published authors
- * Version: 1.2.1
+ * Version: 1.2.2
  * Author: Brian Hanna, Stirling Technologies
  * Author URI: https://github.com/brianjohnhanna
  * GitHub Plugin URI: brianjohnhanna/wp-activity-summary

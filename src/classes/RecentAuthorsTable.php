@@ -25,7 +25,7 @@ class RecentAuthorsTable extends Table {
         foreach ($users as $user) {
             $user->posts = (new \WP_Query([
                 'author'      => $user->ID,
-                'numberposts' => -1,
+                'posts_per_page' => -1,
                 // 'date_query' => $this->args['date_query']
             ]))->get_posts();
         }
