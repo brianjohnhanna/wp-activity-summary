@@ -12,7 +12,8 @@ class SummaryEmail {
     {
         $weekly_date_query = [
             [
-                'after' => 'a week ago',
+                'after' => '-1 week',
+                'inclusive' => true
             ]
         ];
         ob_start();
@@ -20,13 +21,14 @@ class SummaryEmail {
 
         echo '<p>This is your weekly email updating you on the current status of the blog on ' . get_bloginfo('name') . '.</p>';
 
-        echo '<h3>Recent Posts</h3>';
-        echo (new \ST\WP_Activity_Summary\PostsTable())->html([
+        echo '<h3>Posts Published Since ' . date('m/d/Y', strtotime('-1 week')) . '</h3>';
+        echo (new \ST\WP_Activity_Summary\PostsTable([
             'date_query' => $weekly_date_query,
             'posts_per_page' => -1
-        ]);
-        echo '<h3>Authors by Post Date</h3>';
-        echo (new \ST\WP_Activity_Summary\RecentAuthorsTable([
+        ]))->html();
+
+        echo '<h3>All Authors Ordered by Last Post</h3>';
+        echo (new \ST\WP_Activity_Summary\RecentAuthorsTable(array(), [
             'date_query' => $weekly_date_query
         ]))->html();
 

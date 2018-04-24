@@ -9,18 +9,13 @@ class PostsTable extends Table {
     public function __construct($params = array()) {
         $defaults = [
             'post_type' => apply_filters('wpas/default_post_types', 'post'),
-            'posts_per_page' => 10,
-            'date_query' => array()
+            'posts_per_page' => 10
         ];
-        $this->args = array_merge($defaults, $params);
+        $this->args = wp_parse_args($params, $defaults);
     }
 
     public function get_records() {
-        return (new \WP_Query([
-            'post_type' => $this->args['post_type'],
-            'posts_per_page' => $this->args['posts_per_page'],
-            'date_query' => $this->args['date_query']
-        ]))->get_posts();
+        return (new \WP_Query($this->args))->get_posts();
     }
 
     public function column_title($post) {

@@ -10,10 +10,9 @@ class RecentAuthorsTable extends Table {
         $defaults = [
             'has_published_posts' => apply_filters('wpas/default_post_types', null),
             'role' => apply_filters('wpas/default_author_roles', null),
-            'limit' => -1,
-            'date_query' => array()
+            'limit' => -1
         ];
-        $this->args = array_merge($defaults, $params);
+        $this->args = wp_parse_args($params, $defaults);
     }
 
     public function get_records() {
@@ -25,11 +24,11 @@ class RecentAuthorsTable extends Table {
         foreach ($users as $user) {
             $user->posts = (new \WP_Query([
                 'author'      => $user->ID,
-                'posts_per_page' => -1,
-                // 'date_query' => $this->args['date_query']
+                'posts_per_page' => -1
             ]))->get_posts();
         }
         usort($users, [$this, 'sort_by_date']);
+        
         if ($this->args['limit'] > 0) {
             return array_slice($users, 0, $this->args['limit']);
         }
